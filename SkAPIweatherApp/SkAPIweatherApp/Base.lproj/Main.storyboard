@@ -42,11 +42,11 @@
                                     <constraint firstItem="0Nq-bM-CVu" firstAttribute="top" secondItem="lqm-kC-QW7" secondAttribute="top" id="zwB-W8-D4B"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fJK-Jl-XjG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fJK-Jl-XjG">
                                 <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="180" id="tgl-7I-VvS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SummaryTableViewCell" rowHeight="180" id="tgl-7I-VvS" customClass="SummaryTableViewCell" customModule="SkAPIweatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tgl-7I-VvS" id="iJ4-mv-rEo">
@@ -95,8 +95,14 @@
                                                 <constraint firstItem="IN2-LP-3GC" firstAttribute="top" secondItem="Ycz-GS-hPO" secondAttribute="bottom" constant="10" id="xqf-xI-wwd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currentTemperatureLabel" destination="IN2-LP-3GC" id="7ad-rJ-iY2"/>
+                                            <outlet property="minMaxLabel" destination="Ycz-GS-hPO" id="4UV-wy-avL"/>
+                                            <outlet property="statusLabel" destination="51T-6h-OiO" id="iPb-zb-ruR"/>
+                                            <outlet property="weatherImageView" destination="yQo-rY-ove" id="fLp-RN-CBN"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="1YJ-Vi-6cY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ForecastTableViewCell" rowHeight="80" id="1YJ-Vi-6cY" customClass="ForecastTableViewCell" customModule="SkAPIweatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1YJ-Vi-6cY" id="GQ0-9g-Zms">
@@ -151,6 +157,13 @@
                                                 <constraint firstItem="72A-2b-l5R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vNh-9C-cT7" secondAttribute="trailing" constant="10" id="vAs-UI-iAc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="X9l-ID-88R" id="lwC-82-mAF"/>
+                                            <outlet property="statusLabel" destination="pBS-yp-u88" id="fPz-yE-yvi"/>
+                                            <outlet property="temperatureLabel" destination="aX6-8A-Svm" id="Xaf-6A-6V0"/>
+                                            <outlet property="timeLabel" destination="vNh-9C-cT7" id="Klv-cV-GHt"/>
+                                            <outlet property="weatherImageView" destination="72A-2b-l5R" id="P9t-u8-SJK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
