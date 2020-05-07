@@ -79,5 +79,3 @@ let task = session.dataTask(with: url) { (data, response, error) in
 }
 
 task.resume()
-
-
