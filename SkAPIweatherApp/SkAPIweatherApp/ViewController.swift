@@ -12,11 +12,21 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     
-    
+    /// 기온의 소숫점이 .00 으로 나오기 때문에 한 자리 숫자로 바꿔줌
+    let tempFormatter: NumberFormatter = {
+        let f = NumberFormatter()
+        // 소숫점이 0 인 경우 출력하지 않는다
+        f.minimumFractionDigits = 0
+        // 나머지 경우에는 최대 한 자리만 출력한다.
+        f.maximumFractionDigits = 1
+        return f
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        WeatherDataSource.shared.fetchSummary(lat: 37.498206, lon: 127.02761) { [weak self]
+            in self?.listTableView.reloadData()
+        }
     }
 
 
@@ -39,7 +49,26 @@ extension ViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell else {
                 return UITableViewCell()
             }
-            // code
+            if let data = WeatherDataSource.shared.summary?.weather.minutely.first {
+                cell.weatherImageView.image = UIImage(named: data.sky.code)
+                cell.statusLabel.text = data.sky.name
+                
+                /// 문자열에 저장된 값을 타입 캐스팅을 활용하여 Double 값으로 바꾼 다음, 바꿀 수 없다면 0.0 을 저장한다.
+                /// max와 min 값에는 Double 값이 저장되어 있다.
+                let max = Double(data.temperature.tmax) ?? 0.0
+                let min = Double(data.temperature.tmin) ?? 0.0
+                
+                /// max와 min을 tempFormatter를 이용하여 문자열로 바꾼다, 바꿀 수 없다면 - 으로 바꾼다.
+                let maxStr = tempFormatter.string(for: max) ?? "-"
+                let minStr = tempFormatter.string(for: min) ?? "-"
+                
+                cell.minMaxLabel.text = "최대 \(maxStr)º, 최소 \(minStr)º"
+                
+                let current = Double(data.temperature.tc) ?? 0.0
+                let currentStr = tempFormatter.string(for: current) ?? "-"
+                cell.currentTemperatureLabel.text = "\(currentStr)º"
+            }
+            
             return cell
         }
         
