@@ -8,11 +8,18 @@
 
 import Foundation
 
+struct ForecastData {
+    let date: Date
+    let skyCode: String
+    let skyName: String
+    let temperature: Double
+}
+
 struct Forecast: Codable {
     struct Weather: Codable {
         struct Forecast3days: Codable {
             struct Fcst3hour: Codable {
-                struct Sky: Codable {
+                @objcMembers class Sky: NSObject, Codable {
                     let code4hour: String
                     let name4hour: String
                     let code7hour: String
@@ -59,7 +66,7 @@ struct Forecast: Codable {
                     let name67hour: String
                 }
                 
-                struct Temperature: Codable {
+                @objcMembers class Temperature: NSObject, Codable {
                     let temp4hour: String
                     let temp7hour: String
                     let temp10hour: String
@@ -93,6 +100,48 @@ struct Forecast: Codable {
         }
         
         let forecast3days: [Forecast3days]
+        
+        func arrayRepresentation() -> [ForecastData] {
+            guard let target = forecast3days.first?.fcst3hour else {
+                return []
+            }
+            
+            let f = DateFormatter()
+            f.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            
+            guard let str = forecast3days.first?.timeRelease, let baseData = f.date(from: str) else {
+                return []
+            }
+            
+            var data = [ForecastData]()
+            
+            // 4에서 67까지 3씩 증가하는 반복문
+            /// 단기예보의 시간이 4~67시간 까지 3씩 증가함 - Weather API 참고
+            for hour in stride(from: 4, to: 67, by: 3) {
+                var key = "code\(hour)hour"
+                // 문자열 키로 값을 가져올 땐 value(forKey:) 사용
+                guard let skyCode = target.sky.value(forKey: key) as? String else {
+                    continue
+                }
+                
+                key = "name\(hour)hour"
+                guard let skyName = target.sky.value(forKey: key) as? String else {
+                    continue
+                }
+                
+                key = "temp\(hour)hour"
+                let tempStr = target.temperature.value(forKey: key) as? String ?? "0.0"
+                /// tempStr을 타입 컨버전을 통하여 Double로 변환
+                guard let temp = Double(tempStr) else { continue }
+                
+                let date = baseData.addingTimeInterval(TimeInterval(hour) * 60 * 60)
+                
+                let forecast = ForecastData(date: date, skyCode: skyCode, skyName: skyName, temperature: temp)
+                data.append(forecast)
+            }
+            
+            return data
+        }
     }
     
     struct Result: Codable {
