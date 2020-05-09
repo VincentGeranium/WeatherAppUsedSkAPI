@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class WeatherDataSource {
     static let shared = WeatherDataSource()
@@ -15,7 +16,30 @@ class WeatherDataSource {
     var summary: WeatherSummary?
     var forecastList = [ForecastData]()
     
-    func fetchSummary(lat: Double, lon: Double, completion: @escaping () -> ()) {
+    let group = DispatchGroup()
+    let workQueue = DispatchQueue(label: "apiQueue", attributes: .concurrent)
+    
+    func fetch(location: CLLocation, completion: @escaping () -> ()) {
+        group.enter()
+        workQueue.async {
+            self.fetchSummary(lat: location.coordinate.latitude, lon: location.coordinate.longitude) {
+                self.group.leave()
+            }
+        }
+        
+        group.enter()
+        workQueue.async {
+            self.fetchForecast(lat: location.coordinate.latitude, lon: location.coordinate.longitude) {
+                self.group.leave()
+            }
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            completion()
+        }
+    }
+    
+    private func fetchSummary(lat: Double, lon: Double, completion: @escaping () -> ()) {
         let apiUrl = "https://apis.openapi.sk.com/weather/current/minutely?version=2&lat=\(lat)&lon=\(lon)&appKey=\(appKey)"
 
         guard let url: URL = URL(string: apiUrl) else { fatalError("Url Error") }
@@ -66,7 +90,7 @@ class WeatherDataSource {
 
     }
     
-    func fetchForecast(lat: Double, lon: Double, completion: @escaping () -> ()) {
+    private func fetchForecast(lat: Double, lon: Double, completion: @escaping () -> ()) {
         // 배열의 초기화
         forecastList.removeAll()
         
