@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
     
+    lazy var locationManager: CLLocationManager = {
+        let m = CLLocationManager()
+        m.delegate = self
+        return m
+    }()
+    
     @IBOutlet weak var listTableView: UITableView!
+    
+    @IBOutlet weak var locationLabel: UILabel!
+    
     
     /// 기온의 소숫점이 .00 으로 나오기 때문에 한 자리 숫자로 바꿔줌
     let tempFormatter: NumberFormatter = {
@@ -44,6 +54,27 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        locationLabel.text = "업데이트 중..."
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .authorizedAlways, .authorizedWhenInUse:
+                updateCurrentLocation()
+            case .denied, .restricted:
+                show(message: "위치 서비스 사용 불가")
+            @unknown default:
+                fatalError()
+            }
+        } else {
+            show(message: "위치 서비스 사용 불가")
+        }
+    }
+    
     var topInset: CGFloat = 0.0
     
     override func viewDidLayoutSubviews() {
@@ -62,6 +93,31 @@ class ViewController: UIViewController {
     }
 
 
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func updateCurrentLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        manager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        show(message: error.localizedDescription)
+        manager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            updateCurrentLocation()
+        default:
+            break
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {

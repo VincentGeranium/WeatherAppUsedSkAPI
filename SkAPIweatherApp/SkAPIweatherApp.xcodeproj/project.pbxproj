@@ -13,6 +13,7 @@
 		20B39BB7246443C5008BB7D0 /* WeatherSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B39BB6246443C5008BB7D0 /* WeatherSummary.swift */; };
 		20B39BB92464442C008BB7D0 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B39BB82464442C008BB7D0 /* Forecast.swift */; };
 		20B39BBB24644527008BB7D0 /* WeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B39BBA24644527008BB7D0 /* WeatherDataSource.swift */; };
+		20D089F72466ACEF008776BA /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D089F62466ACEF008776BA /* UIViewController+Alert.swift */; };
 		20E6D1E9245DB01900C375A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E6D1E8245DB01900C375A3 /* AppDelegate.swift */; };
 		20E6D1EB245DB01900C375A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E6D1EA245DB01900C375A3 /* SceneDelegate.swift */; };
 		20E6D1ED245DB01900C375A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E6D1EC245DB01900C375A3 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 		20B39BB6246443C5008BB7D0 /* WeatherSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSummary.swift; sourceTree = "<group>"; };
 		20B39BB82464442C008BB7D0 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		20B39BBA24644527008BB7D0 /* WeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataSource.swift; sourceTree = "<group>"; };
+		20D089F62466ACEF008776BA /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		20E6D1E5245DB01900C375A3 /* SkAPIweatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkAPIweatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E6D1E8245DB01900C375A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20E6D1EA245DB01900C375A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		20D089F52466ACD3008776BA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				20D089F62466ACEF008776BA /* UIViewController+Alert.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		20E6D1DC245DB01900C375A3 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +108,7 @@
 		20E6D1E7245DB01900C375A3 /* SkAPIweatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				20D089F52466ACD3008776BA /* Extension */,
 				20B39BB5246443B1008BB7D0 /* Model */,
 				2074722524619F370015A026 /* API */,
 				2012231324618723009C888D /* Cell */,
@@ -189,6 +200,7 @@
 				20B39BBB24644527008BB7D0 /* WeatherDataSource.swift in Sources */,
 				208E3378245DB4690057DEA4 /* Common.swift in Sources */,
 				20B39BB7246443C5008BB7D0 /* WeatherSummary.swift in Sources */,
+				20D089F72466ACEF008776BA /* UIViewController+Alert.swift in Sources */,
 				20E6D1ED245DB01900C375A3 /* ViewController.swift in Sources */,
 				20E6D1E9245DB01900C375A3 /* AppDelegate.swift in Sources */,
 				2012231524618744009C888D /* SummaryTableViewCell.swift in Sources */,
