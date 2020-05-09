@@ -26,6 +26,12 @@
 		2012231424618744009C888D /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		2012231624618760009C888D /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		201AD0A624643B86009BBEFE /* ForecastApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ForecastApi.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		204C13942466D8D500058D6A /* 강남역.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "강남역.gpx"; sourceTree = "<group>"; };
+		204C13952466DAB000058D6A /* 강릉항.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "강릉항.gpx"; sourceTree = "<group>"; };
+		204C13962466DABE00058D6A /* 제주공항.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "제주공항.gpx"; sourceTree = "<group>"; };
+		204C13972466DAD200058D6A /* 광안리.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "광안리.gpx"; sourceTree = "<group>"; };
+		204C13982466DADF00058D6A /* 금남로.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "금남로.gpx"; sourceTree = "<group>"; };
+		204C13992466DAEA00058D6A /* 동성로.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "동성로.gpx"; sourceTree = "<group>"; };
 		2074722624619F480015A026 /* SummaryApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SummaryApi.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		208E3377245DB4690057DEA4 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		20B39BB6246443C5008BB7D0 /* WeatherSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSummary.swift; sourceTree = "<group>"; };
@@ -60,6 +66,19 @@
 				2012231624618760009C888D /* ForecastTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		204C13932466D8C300058D6A /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				204C13942466D8D500058D6A /* 강남역.gpx */,
+				204C13992466DAEA00058D6A /* 동성로.gpx */,
+				204C13982466DADF00058D6A /* 금남로.gpx */,
+				204C13972466DAD200058D6A /* 광안리.gpx */,
+				204C13952466DAB000058D6A /* 강릉항.gpx */,
+				204C13962466DABE00058D6A /* 제주공항.gpx */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		2074722524619F370015A026 /* API */ = {
@@ -108,6 +127,7 @@
 		20E6D1E7245DB01900C375A3 /* SkAPIweatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				204C13932466D8C300058D6A /* Location */,
 				20D089F52466ACD3008776BA /* Extension */,
 				20B39BB5246443B1008BB7D0 /* Model */,
 				2074722524619F370015A026 /* API */,

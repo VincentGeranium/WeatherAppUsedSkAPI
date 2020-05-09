@@ -102,6 +102,23 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        if let loc = locations.first {
+            print(loc.coordinate)
+            
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(loc) { [weak self] (placemarks, error) in
+                if let place = placemarks?.first {
+                    if let gu = place.locality, let dong = place.subLocality {
+                        self?.locationLabel.text = "\(gu) \(dong)"
+                    } else {
+                        self?.locationLabel.text = place.name
+                    }
+                }
+            }
+        }
+        
+
+        
         manager.stopUpdatingLocation()
     }
     
